@@ -1,20 +1,21 @@
 <ul class="nav navbar-nav">
     <li class="active">
         <div class="btn-group" role="group">
-            <div><!--if-->
-                <button class="btn btn-outline-danger reg">[username]</button>
-                <a href="/logout">
-                  <button class="btn btn-primary log">Logout</button>
-                </a>
+            <div *ngIf="isLoggedIn; else login"><!--if-->
+                <button class="btn btn-outline-danger reg">{{ userName }}</button>
+                <button class="btn btn-primary log"
+                    (click)="onLogOut()">Logout</button>
             </div>
-            <div> <!--else-->
-                <button type="register" class="btn btn-danger reg" data-toggle="modal" data-target="#regModal">
+            <ng-template #login> <!--else-->
+                <button type="register" class="btn btn-danger reg" data-toggle="modal" data-target="#regModal"
+                        (click)="onRegister()">
                   Register
                 </button>
-                <button type="login" class="btn btn-primary log" data-toggle="modal" data-target="#loginModal">
+                <button type="login" class="btn btn-primary log" data-toggle="modal" data-target="#loginModal"
+                        (click)="onLogIn()">
                   Login
                 </button>
-            </div>
+            </ng-template>
         </div>
     </li>
 </ul>
