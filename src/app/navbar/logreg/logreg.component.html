@@ -27,20 +27,22 @@
         </button>
     </div>
     <div class="modal-body">
-        <form action="/login" method="post">
+        <form method="post">
             <div class="form-group">
                 <label for="userName">User Name</label>
                 <input id="userName" name="userName" type="text" class="form-control"
-                       placeholder="Name" required minlength="3"/>
+                       placeholder="Name" required minlength="3"
+                       (input)="onUpdateUserName($event)"/>
             </div>
             <div class="form-group">
                 <label for="userPassword">Password</label>
                 <input id="userPassword" name="userPassword" type="password"
-                       class="form-control" placeholder="Password" required minlength="8"/>
+                       class="form-control" placeholder="Password" required minlength="8"
+                       (input)="onUpdateUserPswd($event)"/>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="button" class="btn btn-primary" (click)="[onLogIn(), c('Close click')]">Login</button>
             </div>
         </form>
     </div>
@@ -54,26 +56,45 @@
         </button>
     </div>
     <div class="modal-body">
-        <form action="/login" method="post">
+        <form>
             <div class="form-group">
                 <label for="userNameReg">User Name</label>
                 <input id="userNameReg" name="userName" type="text" class="form-control"
-                       placeholder="Name" required minlength="3"/>
+                       placeholder="Name" required minlength="3"
+                       (input)="onUpdateUserName($event)"/>
             </div>
             <div class="form-group">
                 <label for="regUserEmailReg">Password</label>
                 <input id="regUserEmailReg" name="userEmail" type="email" class="form-control"
-                       placeholder="email@example.com" required/>
+                       placeholder="email@example.com" required
+                       (input)="onUpdateUserEmail($event)"/>
             </div>
             <div class="form-group">
                 <label for="userPasswordReg">Password</label>
                 <input id="userPasswordReg" name="userPassword" type="password"
-                       class="form-control" placeholder="Password" required minlength="8"/>
+                       class="form-control" placeholder="Password" required minlength="8"
+                       (input)="onUpdateUserPswd($event)"/>
             </div>
             <div class="form-group">
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn btn-primary" (click)="onRegister()">Register</button>
             </div>
         </form>
+    </div>
+</ng-template>
+
+
+<ng-template #error let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Error</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        Error
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
     </div>
 </ng-template>

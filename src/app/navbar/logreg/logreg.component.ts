@@ -10,8 +10,9 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class LogregComponent implements OnInit {
     isLoggedIn:  boolean = false;
-    isRegister: boolean = false;
     userName: string = 'Elek Teszt';
+    userEmail: string = '';
+    userPswd: string = '';
     logOutServerPath: string = 'http://0.0.0.0:8080/api/logout';
     closeResult: string;
 
@@ -20,18 +21,30 @@ export class LogregComponent implements OnInit {
     ngOnInit() {
     }
 
+    onUpdateUserName(event: Event) {
+        this.userName = (<HTMLInputElement>event.target).value;
+    }
+
+    onUpdateUserEmail(event: Event) {
+        this.userEmail = (<HTMLInputElement>event.target).value;
+    }
+
+    onUpdateUserPswd(event: Event) {
+        this.userPswd = (<HTMLInputElement>event.target).value;
+    }
+
     onLogOut() {
         this.isLoggedIn = false;
     }
 
-    onRegister(content) {
-        this.isRegister = true;
-        open(content);
+    onRegister() {
     }
 
-    onLogIn(content) {
-        this.isRegister = false;
-        open(content);
+    onLogIn() {
+        if(this.userName.length < 3) {
+            open(error);
+        }
+        this.isLoggedIn = true;
     }
 
     open(content) {
