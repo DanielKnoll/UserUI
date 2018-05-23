@@ -2,20 +2,78 @@
     <li class="active">
         <div class="btn-group" role="group">
             <div *ngIf="isLoggedIn; else login"><!--if-->
-                <button class="btn btn-outline-danger reg">{{ userName }}</button>
+                <button class="btn btn-outline-danger reg">Hi {{ userName }}</button>
                 <button class="btn btn-primary log"
                     (click)="onLogOut()">Logout</button>
             </div>
             <ng-template #login> <!--else-->
-                <button type="register" class="btn btn-danger reg" data-toggle="modal" data-target="#regModal"
-                        (click)="onRegister()">
+                <button type="button" class="btn btn-danger reg" (click)="open(regModal)">
                   Register
                 </button>
-                <button type="login" class="btn btn-primary log" data-toggle="modal" data-target="#loginModal"
-                        (click)="onLogIn()">
+                <button type="button" class="btn btn-primary log" (click)="open(loginModal)">
                   Login
                 </button>
             </ng-template>
         </div>
     </li>
 </ul>
+
+
+<ng-template #loginModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Please log in</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input id="userName" name="userName" type="text" class="form-control"
+                       placeholder="Name" required minlength="3"/>
+            </div>
+            <div class="form-group">
+                <label for="userPassword">Password</label>
+                <input id="userPassword" name="userPassword" type="password"
+                       class="form-control" placeholder="Password" required minlength="8"/>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #regModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Please register</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="userNameReg">User Name</label>
+                <input id="userNameReg" name="userName" type="text" class="form-control"
+                       placeholder="Name" required minlength="3"/>
+            </div>
+            <div class="form-group">
+                <label for="regUserEmailReg">Password</label>
+                <input id="regUserEmailReg" name="userEmail" type="email" class="form-control"
+                       placeholder="email@example.com" required/>
+            </div>
+            <div class="form-group">
+                <label for="userPasswordReg">Password</label>
+                <input id="userPasswordReg" name="userPassword" type="password"
+                       class="form-control" placeholder="Password" required minlength="8"/>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

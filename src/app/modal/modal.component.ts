@@ -9,11 +9,11 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalComponent implements OnInit {
 
-    closeResult: string;
+    //closeResult: string;
 
     constructor(private modalService: NgbModal) {}
 
-    open(content) {
+    /*open(content) {
         this.modalService.open(content).result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
@@ -29,7 +29,7 @@ export class ModalComponent implements OnInit {
         } else {
             return  `with: ${reason}`;
         }
-    }
+    }*/
 
   ngOnInit() {
   }
